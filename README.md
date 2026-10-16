@@ -217,7 +217,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt   # resolves ../matrix-element-call-common automatically
-npm ci --prefix call_worker
+bun install --cwd call_worker --frozen-lockfile
 
 cp config/config.example.toml config.toml
 # Edit config.toml
@@ -225,7 +225,7 @@ cp config/config.example.toml config.toml
 python3 main.py
 ```
 
-Requires: Python 3.11+, Node.js 22+, ffmpeg, yt-dlp.
+Requires: Python 3.11+, Node.js 22+, Bun (installs the call worker's dependencies), ffmpeg, yt-dlp.
 
 > [!NOTE]
 > `requirements.txt` references `../matrix-element-call-common` (the shared library). Both repos must be cloned into the same parent directory for this to resolve correctly.
@@ -242,7 +242,7 @@ py -3 -m venv venv
 .\venv\Scripts\Activate.ps1
 
 pip install -r requirements.txt
-npm ci --prefix call_worker
+bun install --cwd call_worker --frozen-lockfile
 
 Copy-Item .\config\config.example.toml .\config.toml
 # Edit .\config.toml
@@ -250,7 +250,7 @@ Copy-Item .\config\config.example.toml .\config.toml
 python .\main.py
 ```
 
-Requires: Python 3.11+, Node.js 22+, ffmpeg, yt-dlp (available in PATH).
+Requires: Python 3.11+, Node.js 22+, Bun (installs the call worker's dependencies), ffmpeg, yt-dlp.(available in PATH).
 
 ## Basic Verification
 

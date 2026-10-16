@@ -15,7 +15,7 @@ A Matrix music bot with Discord-style chat commands (`!m play`, `!m skip`, `!m q
 python3 -m venv venv && source venv/bin/activate
 # ../matrix-element-call-common must be cloned as a sibling directory first
 pip install -r requirements.txt
-npm ci --prefix call_worker
+bun install --cwd call_worker --frozen-lockfile
 cp config/config.example.toml config/config.toml
 # The active config is config.toml at the ROOT of the project, NOT config/config.toml.
 # Always edit the root-level config.toml — config/config.toml is just the example template.

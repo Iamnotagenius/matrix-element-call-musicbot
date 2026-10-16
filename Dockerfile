@@ -1,4 +1,4 @@
-FROM node:26-bookworm-slim
+FROM docker.io/library/node:26-bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -22,8 +22,9 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r /app/requirements.txt \
     && pip install --no-cache-dir -U yt-dlp
 
-COPY call_worker/package*.json /app/call_worker/
-RUN npm ci --prefix /app/call_worker --omit=dev
+COPY --from=docker.io/oven/bun:1.4.3-debian /usr/local/bin/bun /usr/local/bin/bun
+COPY call_worker/package.json call_worker/bun.lock /app/call_worker/
+RUN bun install --cwd /app/call_worker --frozen-lockfile --production
 
 COPY . /app
 
