@@ -572,6 +572,9 @@ class CallWorker {
         }
         ffmpegArgs.push("-f", "s16le", "-ac", "1", "-ar", "48000", "pipe:1");
 
+        logLine(`ffmpegArgs=${ffmpegArgs}`)
+
+        // await new Promise(resolve => setTimeout(resolve, 5000))
         const ffmpeg = spawn(
             "ffmpeg",
             ffmpegArgs,
