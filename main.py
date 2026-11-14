@@ -1,6 +1,7 @@
 import asyncio
 import logging
 from logging.handlers import RotatingFileHandler
+from os import getenv
 
 from bot import IntegratedBot
 from config import Config
@@ -58,7 +59,7 @@ def setup_logging(config: Config):
         clean_file_handler.addFilter(CleanLogNoiseFilter(config.CLEAN_LOG_FILTER_MATRIXRTC_NOISE))
 
     root = logging.getLogger()
-    root.setLevel(logging.INFO)
+    root.setLevel(getenv('LOG_LEVEL', 'INFO').upper())
     root.handlers.clear()
     root.addHandler(stream_handler)
     root.addHandler(file_handler)
